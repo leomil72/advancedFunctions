@@ -1,0 +1,57 @@
+****************************************
+         T R N G   M O D U L E
+****************************************
+
+This module is part of "Advanced Function", a collection of advanced
+functions written to use the integrated peripherals of the Atmel SAM3X8E
+microcontroller of the Arduino DUE board that are not supported by the
+Arduino IDE.
+
+Written by Leonardo Miliani <www DOT leonardomiliani DOT com>
+
+The latest version of this library can be found at:
+http://www.leonardomiliani.com/
+or at:
+https://github.com/leomil72
+
+****************************************
+VERSION HISTORY
+
+v. 0.1.0:  first release
+
+****************************************
+INSTALL THE LIBRARY
+
+Please refer to file README_FIRST.txt
+
+****************************************
+FUNCTIONS
+
+This class supports the True Random Number Generator (TRNG) integrated into
+the SAM3X8E. The TRNG is a very robust random generator that has passed
+the American NIST Special Publication 800-22 and Diehard Random Tests Suites
+(source: Atmel datasheet).
+
+To access the TRNG module you have to use the "trng" object.
+Its methods are the following:
+
+byte temp = getByte(void);
+unsinged int temp = getInt(void);
+unsigned long temp = getLong(void);
+
+They return, respectively, a random byte (8 bits), a random unsigned integer
+(16 bits), and a random unsigned long (32 bits).
+
+Keep in mind that the internat TRNG generates 32 bits of entropy every 84
+clock cycles so if you try to extract more entropy then the generated one,
+the code will have to wait for the entropy to be generated and made available.
+
+****************************************
+LICENSE
+
+Please refer to README_FIRST.txt
+
+****************************************
+DOCUMENT REVISION
+
+1st revision - 2013/05/09

@@ -1,0 +1,109 @@
+****************************************
+         R T C   M O D U L E
+****************************************
+
+This module is part of "Advanced Function", a collection of advanced
+functions written to use the integrated peripherals of the Atmel SAM3X8E
+microcontroller of the Arduino DUE board that are not supported by the
+Arduino IDE.
+
+Written by Leonardo Miliani <www DOT leonardomiliani DOT com>
+
+The latest version of this library can be found at:
+http://www.leonardomiliani.com/
+or at:
+https://github.com/leomil72
+
+****************************************
+VERSION HISTORY
+
+v. 0.1.0:  first release
+v. 0.2.0:  first working release
+v. 0.3.0:  added functions to work with timestamps (and other)
+v. 0.4.0:  now the library can use the external 32 kHz crystal, if present
+
+****************************************
+INSTALL THE LIBRARY
+
+Please refer to file README_FIRST.txt
+
+****************************************
+IMPORTANT!
+
+Now the library by default uses the external 32 kHz crystal connected to pins
+XIN32/XOUT32 as a source clock for the Slow Clock device of the SAM3X8E
+(that clocks the Real-Time Clock peripheral too). If you don't use it (i.e.,
+you don't use an Arduino DUE board that implements it), please open the
+file myRtc.cpp and comment the line #16 putting two slash symbols "/" before
+it so that it will look like this:
+
+//#define USE_EXTERNAL_CRYSTAL
+
+Save the file to store the change before to compile your code.
+
+****************************************
+FUNCTIONS
+
+Currently the library supports a part of the functions provided by the RTC
+(Real Time Clock) of the SAM3X8E.
+
+To access the RTC clock you have to use the "rtc" object.
+Its methods are the following:
+
+byte temp = rtc.getHours();
+it returns a byte containing the current hours.
+
+byte temp = rtc.getMinutes();
+it returns a byte containing the current minutes.
+
+byte temp = rtc.getSeconds();
+it returns a byte containing the current seconds.
+
+int temp = rtc.getYear(void);
+it returns a 16-bits integer containing the current year
+
+byte temp = getMonth(void);
+it returns a byte containing the current month
+
+byte temp = getDay(void);
+it returns a byte containing the current day
+
+byte temp = setTime(hours, minutes, seconds, time_format);
+it sets the time using the data provided to the function. Time_format sets
+the clock to use the 12 or 24 hrs format.
+
+byte temp = setDate(year, month, day, week_day);
+it sets the calendar using the data provided to the function.
+
+These two functions return 0 is the clock and/or calendar has been properly
+set, and 1 if something went wrong.
+
+unsigned long temp = getTimestamp(epoch);
+it returns the timestamp, the number of seconds since the specified
+epoch (default=1970)
+
+byte temp = setClockWithTimestamp(timestamp);
+it sets the internal RTC using "timestamp"
+
+byte temp =weekDay(timestamp);
+it returns the week day of "timestamp"
+
+byte temp = isLeapYear(year);
+it checks if a year is a leap year or not
+
+****************************************
+TO-DO
+
+* manage the alarms
+
+****************************************
+LICENSE
+
+Please refer to README_FIRST.txt
+
+****************************************
+DOCUMENT REVISION
+
+4th revision - 2013/09/24
+
+
